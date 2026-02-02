@@ -8,6 +8,8 @@ stationary = {
     "Writing Pad": 2.50
 }
 
+# suggest the above to be in all lower case
+
 # Dictionary to store customer's order
 order = {}
 
@@ -15,9 +17,12 @@ print("Welcome to the Bookshop!")
 print("Available items:\n")
 
 for item, price in stationary.items():
+    #item here can use .title() so that the first leter of each word will be upper case
     print(f"{item}: ${price:.2f}")
 
 while True:
+    # the reason for the key to be in lower case is for easier checking when you have the input with .lower().strip()
+    # it force all upper case input by user to be lower case and remove the white space accidentally type by user
     choice = input("\nEnter the item you want to order (or type 'no more' to stop): ")
 
     if choice.lower() == "no more":
@@ -27,9 +32,15 @@ while True:
         print(f"{choice} costs ${stationary[choice]:.2f}")
         add_item = input("Would you like to add this item to your order? (yes/no): ")
 
+        # suggest to put another while loop here to ask the user to input y or no if they did not
         if add_item.lower() == "yes":
             # check if the item is already in order
-            order[choice] = stationary[choice]
+            # if the choice exist, it will overwrite instead of adding the unit price onto it
+            # hence there should be condition to check if choice in order
+            # if choice in order
+            #     order[choice] += stationary[choice]
+            # else
+            order[choice] = stationary[choice] # this is ok if the choice does not exist
             print(f"{choice} has been added to your order.")
         else:
             print(f"{choice} was not added to your order.")
@@ -52,3 +63,16 @@ else:
     print("You did not order any items.")
 
 print("\nThank you for shopping with us!")
+
+# try to do the BOS challenge 1 and 2
+# to help you to understand nested loops
+
+## Challenge 1: Track Quantities of Items
+# Allow the customer to specify how many of each item they want to buy.​
+# Store both the item and quantity in a nested dictionary.​
+# - purchases = ​{"Notebook": {"quantity": 2, "cost": 5.00}}​
+# Calculate the total cost based on quantities.
+
+# ## Challenge 2: Apply Discounts
+# The goal of this challenge is to introduce a discount system to your program, allowing customers to receive a percentage discount if their total spending exceeds a certain threshold.​
+# - Example: If the customer spends more than $20, they get a 10% discount on their bill.
